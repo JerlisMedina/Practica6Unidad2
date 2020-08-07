@@ -1,0 +1,37 @@
+﻿
+@model List<Practica6Unidad2.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+    var c = Model.Count();
+}
+
+<h2>Listado de productos</h2>
+<h5>Total de productos @c</h5>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Descripcion</td>
+            <td>@p.Tipo</td>
+            <td>@p.Precio</td>
+            <td><a href="/Home/Modificar?cod=@p.Id" class="glyphicon glyphicon-edit"> </a></td>
+            <td><a href="/Home/Borrar?cod=@p.Id" class="glyphicon glyphicon-remove"> </a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Home/Guardar" class="glyphicon glyphicon-plus"> Agregar</a>
+
