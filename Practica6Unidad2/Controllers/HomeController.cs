@@ -21,19 +21,16 @@ namespace Practica6Unidad2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Guardar(FormCollection collection) {
+        public ActionResult Guardar([Bind(Include ="Id,Descripcion,Tipo,Precio")] Producto prod) {
             RegistroProducto rp = new RegistroProducto();
 
-            Producto prod = new Producto() {
-                Id = int.Parse(collection["Codigo"]),
-                Descripcion = collection["Descripcion"],
-                Tipo = collection["Tipo"],
-                Precio = double.Parse(collection["Precio"])
-            };
+            if (ModelState.IsValid)
+            {
+                rp.GrabarProducto(prod);
+                return RedirectToAction("Index");
+            }
 
-            rp.GrabarProducto(prod);
-
-            return RedirectToAction("Index");
+            return View(prod);
         }
 
         public ActionResult Borrar(int cod) {
@@ -44,24 +41,20 @@ namespace Practica6Unidad2.Controllers
 
         public ActionResult Modificar(int cod) {
             RegistroProducto rp = new RegistroProducto();
-            rp.MostrarEspecifico(cod);
-            return View(rp);
+            Producto prod = new Producto();
+            prod = rp.MostrarEspecifico(cod);
+            return View(prod);
         }
 
-        [HttpPost]
-        public ActionResult Modificar(FormCollection collection) {
+        [HttpPost, ActionName("Modificar")]
+        public ActionResult Modificar([Bind(Include ="Id,Descripcion,Tipo,Precio")] Producto prod){
             RegistroProducto rp = new RegistroProducto();
-
-            Producto prod = new Producto
+            if (ModelState.IsValid)
             {
-                Id = int.Parse(collection["Codigo"]),
-                Descripcion = collection["Descripcion"],
-                Tipo = collection["Tipo"],
-                Precio = double.Parse(collection["Precio"])
-            };
-
-            rp.Modificar(prod);
-            return RedirectToAction("Index");
+                rp.Modificar(prod);
+                return RedirectToAction("Index");
+            }
+            return View(prod);            
         }
     }
 }

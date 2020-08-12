@@ -1,32 +1,39 @@
-﻿
+﻿@model Practica6Unidad2.Models.Producto
+
 @{
     ViewBag.Title = "Modificar producto";
 }
 
 <h2>Modificar producto</h2>
+<hr />
 <div>
     <form method="post" action="/Home/Modificar">
-        <table class="table">
-            <tr>
-                <td>Codigo</td>
-                <td><input class="text-left" type="text" name="Codigo" /></td>
-            </tr>
-            <tr>
-                <td>Descripcion</td>
-                <td><input type="text" name="Descripcion" /></td>
-            </tr>
-            <tr>
-                <td>Tipo</td>
-                <td><input type="text" name="Tipo" /></td>
-            </tr>
-            <tr>
-                <td>Precio</td>
-                <td><input type="text" name="Precio" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input class="btn btn-success" type="submit" name="Grabar" value="Guardar cambios" /></td>
-            </tr>
-        </table>
+        
+        <dl class="dl-horizontal">
+            
+            <dt>
+                Codigo
+                @*@Html.Label("Codigo", htmlAttributes: new { @class = "control-label" })*@
+            </dt>
+            <dd>
+                @Html.EditorFor(model => model.Id,new { htmlAttributes = new { @class = "form-control", @name = "Codigo" } })
+            </dd>
+            <dt>Descripcion</dt>
+            <dd>
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class ="form-control", @name = "Descripcion" } })
+            </dd>
+            <dt>Tipo</dt>
+            <dd>
+                @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @name = "Tipo" } })
+            </dd>
+            <dt>Precio</dt>
+            <dd>
+                @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @name = "Precio"} })
+            </dd>
+        </dl>
+        <hr />
+        <p><input class="btn btn-success" type="submit" name="Grabar" value="Guardar cambios" /></p>
+       
     </form>
+    @Html.ActionLink(" Retornar","Index",null,new { @class = "glyphicon glyphicon-backward" })
 </div>

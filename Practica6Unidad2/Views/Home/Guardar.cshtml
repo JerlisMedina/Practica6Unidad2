@@ -1,4 +1,4 @@
-﻿
+﻿@model Practica6Unidad2.Models.Producto
 @{
     ViewBag.Title = "Guardar Producto";
 }
@@ -6,28 +6,28 @@
 <h2>Guardar producto</h2>
 <div>
     <form method="post" action="/Home/Guardar">
-        <table class="table">
-            <tr>
-                <td>Codigo</td>
-                <td><input type="text" name="Codigo" /></td>
-            </tr>
-            <tr>
-                <td>Descripcion</td>
-                <td><input type="text" name="Descripcion" /></td>
-            </tr>
-            <tr>
-                <td>Tipo</td>
-                <td><input type="text" name="Tipo" /></td>
-            </tr>
-            <tr>
-                <td>Precio</td>
-                <td><input type="text" name="Precio" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input class="btn btn-success" type="submit" name="Grabar" value="Guardar"/></td>
-            </tr>
-        </table>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Codigo</dt>
+            <dd>
+                @Html.EditorFor(model => Model.Id, new { htmlAttributes = new { @class = "form-control", @name = "Codigo" } })
+            </dd>
+            <dt>Descripcion</dt>
+            <dd>
+                @Html.EditorFor(model => Model.Descripcion, new { htmlAttributes = new { @class = "form-control", @name = "Descripcion" } })
+            </dd>
+            <dt>Tipo</dt>
+            <dd>
+                @Html.EditorFor(model => Model.Tipo, new { htmlAttributes = new { @class = "form-control", @name = "Tipo" } })
+            </dd>
+            <dt>Precio</dt>
+            <dd>
+                @Html.EditorFor(model => Model.Precio, new { htmlAttributes = new { @class = "form-control", @name = "Precio" } })
+            </dd>
+        </dl>
+        <br />
+        <p><input class="btn btn-success" type="submit" name="Grabar" value="Guardar" /></p>
     </form>
+    <p>@Html.ActionLink(" Retornar", "Index", null, new { @class = "glyphicon glyphicon-backward" })</p>
 </div>
 
